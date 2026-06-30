@@ -1,0 +1,82 @@
+
+1.
+博主，用AI。总结了一下。驱动代码的规范，与框架。
+并生成了图表
+
+这样看，学习一个新事物前，你能够想到用ai吗？
+什么场景下用ai ?
+学习一份代码的规范与框架模版，来规范自己的写法。
+这个场景值得使用ai
+
+
+但是，需要来理清项目架构，的场景：
+就是先用agent生成合适阅读循序，
+自己来读一遍
+自己亲手敲一般，才能学会。
+
+
+2.
+
+1.LED
+驱动框架
+• 1.1 数据结构：设备参数= 静态参数+运行参数
+
+1.2调用关系：·复杂调用简单
+• 抽象调用具象
+
+·1.3外部调用：
+配置
+初始化
+基础操作
+高级功能
+
+
+模块层级
+核心函数
+1.4层级详情：
+配置层
+无(宏/结构体定义)
+初始化层
+vLedDevicelnit
+初始化层
+vLedDeviceRunningParamlnit
+基础操作层
+vLedOn/vLedOff/vLedToggle
+基础操作层
+vLedUpdatePinLevel
+高级功能层
+vLedDeviceBlinkExecute
+高级功能层
+vLedDeviceBreathExecute
+高级功能层
+vLedDevicePeriodExecute
+
+
+
+
+1.5命名风格：
+类型
+命名规则
+示例
+枚举类型
+em+模块+功能+Tdf
+emLedDevNumTdf、 emLedModeTdf
+结构体类型
+st+模块+功能+Tdf
+stLedStaticParamTdf、 stLedDeviceParamTdf
+函数
+返回值缩写+模块+功能
+vLedOn (V=void)、C_pstGetLedDeviceParam(c=const/pst=指针结构体）
+宏定义
+全大写+下划线分隔
+LED_DEV_NUM、LED_BREATH_MAX_COUNT
+变量（结构体成员）
+类型缩写+功能
+ulcurrentcount (ul=unsigned long)、 pstGpioBase(pst = 指针结构体)
+
+
+
+•1.6格式分析：
+•注释：全量函数/结构体/枚举带/// @brief/@note/@param注释，符合Doxygen 自动文档规范：
+，格式：运算符/括号前后统一空格，缩进为4空格，代码块通过空行分隔逻辑段；语法：枚举/结构体结束后单独加分号，条件判断/循环语句即使单行也保留大括号;・鲁棒性：通过枚举限定合法值
+直（如LED模式、电平），杜绝“魔法数字”
